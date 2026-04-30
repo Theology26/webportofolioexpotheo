@@ -1,5 +1,7 @@
 # Yosia Gracetheo Boimau - Interactive Portfolio
 
+🚀 **Live Demo (Coba Langsung):** [https://webportofolioexpotheo.vercel.app/](https://webportofolioexpotheo.vercel.app/)
+
 ## Project Description
 A highly interactive, responsive portfolio application built using React Native and Expo Web. This project aims to showcase personal background, educational timeline, and software engineering projects through a premium, high-fidelity user interface. The application features real-time data fetching via the GitHub API, an iOS Glassmorphism design system, and custom-built interactive canvas animations rendered natively.
 

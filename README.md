@@ -43,8 +43,13 @@ Install all required Node modules:
 npm install
 ```
 
-3. Configure Environment
-Open the `constants/Config.ts` file and ensure your GitHub Personal Access Token is properly set in the configuration to prevent API rate limiting.
+3. Configure Environment (Optional for Evaluators)
+The application connects to the GitHub API to fetch repository and profile data. 
+- Out of the Box: It will work without any configuration using GitHub's public rate limits (60 requests/hour). This is usually sufficient for a quick evaluation.
+- To prevent Rate Limiting: If you encounter an API limit, create a new file named `.env.local` in the root directory and add your own GitHub Personal Access Token:
+```env
+EXPO_PUBLIC_GITHUB_TOKEN=your_github_personal_access_token_here
+```
 
 4. Run the Development Server
 Start the Expo development server:

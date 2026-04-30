@@ -13,7 +13,7 @@ export const PROFILE = {
 
   socialLinks: {
     instagram: "https://www.instagram.com/theoxcyro",
-    linkedin: "www.linkedin.com/in/yosia-gracetheo-boimau-919340211",
+    linkedin: "https://www.linkedin.com/in/yosia-gracetheo-boimau-919340211",
     github: "https://github.com/Theology26",
   },
 };

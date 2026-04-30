@@ -69,5 +69,29 @@ Once the server is running, press the `w` key in your terminal. Expo will automa
    For iOS: Open your Camera app, scan the QR code, and tap the prompt to open in Expo Go.
 4. The application will bundle and launch natively on your device.
 
-## Additional Documentation
-The project includes a `documentation` folder that contains additional visual assets and structural diagrams regarding the web and mobile layouts.
+## Visual Documentation (Screenshots)
+
+### Web Interface
+<div align="center">
+  <img src="documentation/web/Intro.png" alt="Intro Screen" width="80%" />
+  <br/><br/>
+  <img src="documentation/web/Profil%201.png" alt="Profile View 1" width="45%" />
+  <img src="documentation/web/Profil%202.png" alt="Profile View 2" width="45%" />
+  <br/><br/>
+  <img src="documentation/web/Pendidikan%201.png" alt="Education View 1" width="45%" />
+  <img src="documentation/web/Pendidikan%202.png" alt="Education View 2" width="45%" />
+  <br/><br/>
+  <img src="documentation/web/Project%201.png" alt="Projects View 1" width="45%" />
+  <img src="documentation/web/Project%202.png" alt="Projects View 2" width="45%" />
+</div>
+
+### Mobile Interface
+<div align="center">
+  <img src="documentation/mobile/Intro%20Mobile.jpeg" alt="Mobile Intro" width="30%" />
+  <img src="documentation/mobile/Profile%20Mobile%201.jpeg" alt="Mobile Profile 1" width="30%" />
+  <img src="documentation/mobile/Profile%20Mobile%202.jpeg" alt="Mobile Profile 2" width="30%" />
+  <br/><br/>
+  <img src="documentation/mobile/Pendidikan%20Mobile%201.jpeg" alt="Mobile Education 1" width="30%" />
+  <img src="documentation/mobile/Pendidikan%20Mobile%202.jpeg" alt="Mobile Education 2" width="30%" />
+  <img src="documentation/mobile/Projects%20Mobile%201.jpeg" alt="Mobile Projects 1" width="30%" />
+</div>

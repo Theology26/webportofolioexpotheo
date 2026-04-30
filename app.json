@@ -1,19 +1,19 @@
 {
   "expo": {
-    "name": "ppt-expo",
+    "name": "Portfolio - Yosia Gracetheo Boimau",
     "slug": "ppt-expo",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "pptexpo",
-    "userInterfaceStyle": "automatic",
+    "userInterfaceStyle": "dark",
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
+        "backgroundColor": "#0f0c29",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
         "backgroundImage": "./assets/images/android-icon-background.png",
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
@@ -23,7 +23,12 @@
     },
     "web": {
       "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/images/favicon.png",
+      "name": "Portfolio - Yosia Gracetheo Boimau",
+      "description": "Personal portfolio website showcasing projects, skills, and education history of Yosia Gracetheo Boimau - Computer Science student at BINUS University Malang.",
+      "lang": "id",
+      "themeColor": "#0f0c29",
+      "backgroundColor": "#0f0c29"
     },
     "plugins": [
       "expo-router",
@@ -33,9 +38,9 @@
           "image": "./assets/images/splash-icon.png",
           "imageWidth": 200,
           "resizeMode": "contain",
-          "backgroundColor": "#ffffff",
+          "backgroundColor": "#0f0c29",
           "dark": {
-            "backgroundColor": "#000000"
+            "backgroundColor": "#0f0c29"
           }
         }
       ]

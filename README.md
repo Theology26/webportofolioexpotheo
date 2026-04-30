@@ -1,50 +1,68 @@
-# Welcome to your Expo app 👋
+# Yosia Gracetheo Boimau - Interactive 3D Portfolio
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+## Project Description
+A highly interactive, responsive portfolio application built using React Native and Expo Web. This project aims to showcase personal background, educational timeline, and software engineering projects through a premium, high-fidelity user interface. The application features real-time data fetching via the GitHub API, an iOS Glassmorphism design system, and custom-built interactive 3D background animations rendered natively.
 
-## Get started
+## Core Features
+- Theatrical Intro Overlay: A dynamic curtain-reveal transition that welcomes users before navigating to the main content.
+- Real-time GitHub Integration: Automatically fetches and displays user profile data, repository lists, and programming language statistics using a GitHub Personal Access Token.
+- Custom 3D Canvas Animations:
+  - Profile Tab: An interactive 3D hourglass with dynamic sand physics.
+  - Education Tab: Interactive Scales of Justice that react to screen touches.
+  - Projects Tab: A 3D Egyptian Pyramid landscape with a sandstorm effect and an interactive Bastet statue easter egg.
+- Cross-Platform Compatibility: Engineered to run seamlessly on both desktop web browsers and native mobile environments via Expo Go.
+- Responsive Layout: Dynamic positioning and scaling that adapts perfectly to both wide-screen monitors and narrow mobile devices.
 
-1. Install dependencies
+## Architecture and Technology Stack
+- Framework: React Native with Expo SDK
+- Routing: Expo Router (File-based navigation system)
+- Animations: React Native Animated API (for native component transitions) and HTML5 Canvas (for lightweight, 60fps 3D rendering without heavy external libraries)
+- Styling: React Native StyleSheet combined with expo-blur for complex iOS Glassmorphism aesthetics.
+- External API: GitHub REST API
 
-   ```bash
-   npm install
-   ```
+## System Requirements
+Before running this project, ensure you have the following installed on your machine:
+- Node.js (Version 18.x or newer)
+- npm (Node Package Manager) or yarn
+- Git
+- Expo Go App (installed on your iOS or Android device for mobile testing)
+- A GitHub Personal Access Token (PAT) for API authentication.
 
-2. Start the app
+## Installation and Setup Guide
 
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
+1. Clone the Repository
+Open your terminal and clone the repository from GitHub:
 ```bash
-npm run reset-project
+git clone <your-github-repo-url>
+cd ppt-expo
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+2. Install Dependencies
+Install all required Node modules:
+```bash
+npm install
+```
 
-## Learn more
+3. Configure Environment
+Open the `constants/Config.ts` file and ensure your GitHub Personal Access Token is properly set in the configuration to prevent API rate limiting.
 
-To learn more about developing your project with Expo, look at the following resources:
+4. Run the Development Server
+Start the Expo development server:
+```bash
+npx expo start
+```
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+## How to Run on Device
 
-## Join the community
+### Web Browser (PC/Laptop)
+Once the server is running, press the `w` key in your terminal. Expo will automatically launch the web version of the portfolio in your default browser (usually at http://localhost:8081).
 
-Join our community of developers creating universal apps.
+### Mobile Device (Expo Go)
+1. Ensure your mobile device and computer are connected to the same Wi-Fi network.
+2. Open the Expo Go application on your smartphone.
+3. For Android: Scan the QR code displayed in your terminal using the Expo Go app.
+   For iOS: Open your Camera app, scan the QR code, and tap the prompt to open in Expo Go.
+4. The application will bundle and launch natively on your device.
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## Additional Documentation
+The project includes a `documentation` folder that contains additional visual assets and structural diagrams regarding the web and mobile layouts.

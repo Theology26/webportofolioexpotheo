@@ -1,22 +1,22 @@
-# Yosia Gracetheo Boimau - Interactive 3D Portfolio
+# Yosia Gracetheo Boimau - Interactive Portfolio
 
 ## Project Description
-A highly interactive, responsive portfolio application built using React Native and Expo Web. This project aims to showcase personal background, educational timeline, and software engineering projects through a premium, high-fidelity user interface. The application features real-time data fetching via the GitHub API, an iOS Glassmorphism design system, and custom-built interactive 3D background animations rendered natively.
+A highly interactive, responsive portfolio application built using React Native and Expo Web. This project aims to showcase personal background, educational timeline, and software engineering projects through a premium, high-fidelity user interface. The application features real-time data fetching via the GitHub API, an iOS Glassmorphism design system, and custom-built interactive canvas animations rendered natively.
 
 ## Core Features
 - Theatrical Intro Overlay: A dynamic curtain-reveal transition that welcomes users before navigating to the main content.
 - Real-time GitHub Integration: Automatically fetches and displays user profile data, repository lists, and programming language statistics using a GitHub Personal Access Token.
-- Custom 3D Canvas Animations:
-  - Profile Tab: An interactive 3D hourglass with dynamic sand physics.
+- Custom Interactive Animations:
+  - Profile Tab: An interactive hourglass with dynamic sand physics.
   - Education Tab: Interactive Scales of Justice that react to screen touches.
-  - Projects Tab: A 3D Egyptian Pyramid landscape with a sandstorm effect and an interactive Bastet statue easter egg.
+  - Projects Tab: An Egyptian Pyramid landscape with a sandstorm effect and an interactive Bastet statue easter egg.
 - Cross-Platform Compatibility: Engineered to run seamlessly on both desktop web browsers and native mobile environments via Expo Go.
 - Responsive Layout: Dynamic positioning and scaling that adapts perfectly to both wide-screen monitors and narrow mobile devices.
 
 ## Architecture and Technology Stack
 - Framework: React Native with Expo SDK
 - Routing: Expo Router (File-based navigation system)
-- Animations: React Native Animated API (for native component transitions) and HTML5 Canvas (for lightweight, 60fps 3D rendering without heavy external libraries)
+- Animations: React Native Animated API (for native component transitions) and HTML5 Canvas (for lightweight, 60fps dynamic rendering without heavy external libraries)
 - Styling: React Native StyleSheet combined with expo-blur for complex iOS Glassmorphism aesthetics.
 - External API: GitHub REST API
 

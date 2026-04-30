@@ -14,9 +14,6 @@ import { LinearGradient } from "expo-linear-gradient";
 import { BlurView } from "expo-blur";
 import { PROFILE, THEME } from "../constants/Config";
 
-// Tidak lagi menggunakan CurtainTexture yang kaku (garis hitam).
-// Kita akan langsung menggunakan BlurView & Gradient di komponen utama.
-
 export default function IntroOverlay() {
   const { width } = useWindowDimensions();
   const [isOpened, setIsOpened] = useState(false);
@@ -26,7 +23,6 @@ export default function IntroOverlay() {
   const slideAnim = useRef(new Animated.Value(0)).current;
   const opacityAnim = useRef(new Animated.Value(1)).current;
 
-  // Animasi nafas (breathing) saat idle
   useEffect(() => {
     if (isOpened) return;
     Animated.loop(
@@ -51,19 +47,17 @@ export default function IntroOverlay() {
     if (isOpened) return;
     setIsOpened(true);
 
-    // Hentikan animasi nafas
     breatheAnim.stopAnimation();
 
-    // Sequence Pembukaan Tirai
     Animated.sequence([
-      // 1. Pop out avatar slightly
+
       Animated.timing(breatheAnim, {
         toValue: 1.15,
         duration: 200,
         easing: Easing.out(Easing.ease),
         useNativeDriver: true,
       }),
-      // 2. Shrink & fade avatar center
+
       Animated.parallel([
         Animated.timing(breatheAnim, {
           toValue: 0,
@@ -77,7 +71,7 @@ export default function IntroOverlay() {
           useNativeDriver: true,
         }),
       ]),
-      // 3. Slide the theatrical curtains apart
+
       Animated.timing(slideAnim, {
         toValue: 1,
         duration: 900,
@@ -106,7 +100,7 @@ export default function IntroOverlay() {
       style={[StyleSheet.absoluteFill, styles.container]}
       pointerEvents={isOpened ? "none" : "auto"}
     >
-      {/* KIRI: Tirai Setengah Kiri */}
+      {}
       <Animated.View
         style={[
           styles.curtain,
@@ -115,7 +109,7 @@ export default function IntroOverlay() {
         ]}
       >
         <BlurView intensity={90} tint="light" style={StyleSheet.absoluteFill}>
-          {/* Tekstur Kaca Ungu Lentur */}
+          {}
           <LinearGradient
             colors={["rgba(167, 139, 250, 0.15)", "rgba(255, 255, 255, 0.2)", "rgba(167, 139, 250, 0.3)"]}
             start={{ x: 0, y: 0 }}
@@ -123,7 +117,7 @@ export default function IntroOverlay() {
             style={StyleSheet.absoluteFill}
           />
         </BlurView>
-        {/* Glow ungu menyala di belahan tengah */}
+        {}
         <LinearGradient
           colors={["rgba(167, 139, 250, 0.7)", "transparent"]}
           start={{ x: 1, y: 0 }}
@@ -132,7 +126,7 @@ export default function IntroOverlay() {
         />
       </Animated.View>
 
-      {/* KANAN: Tirai Setengah Kanan */}
+      {}
       <Animated.View
         style={[
           styles.curtain,
@@ -148,7 +142,7 @@ export default function IntroOverlay() {
             style={StyleSheet.absoluteFill}
           />
         </BlurView>
-        {/* Glow ungu menyala di belahan tengah */}
+        {}
         <LinearGradient
           colors={["rgba(167, 139, 250, 0.7)", "transparent"]}
           start={{ x: 0, y: 0 }}
@@ -157,7 +151,7 @@ export default function IntroOverlay() {
         />
       </Animated.View>
 
-      {/* TENGAH: Tombol Avatar & Teks */}
+      {}
       <Animated.View
         style={[
           styles.centerContent,
@@ -182,7 +176,7 @@ export default function IntroOverlay() {
 
 const styles = StyleSheet.create({
   container: {
-    zIndex: 9999, // Memastikan selalu di atas semua konten
+    zIndex: 9999, 
     justifyContent: "center",
     alignItems: "center",
   },

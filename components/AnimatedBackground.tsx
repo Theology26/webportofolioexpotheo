@@ -47,7 +47,7 @@ export default function AnimatedBackground({
 
   useEffect(() => {
     orbs.forEach((orb, i) => {
-      // Fade in
+
       Animated.timing(orb.opacity, {
         toValue: 1,
         duration: 1500,
@@ -55,7 +55,6 @@ export default function AnimatedBackground({
         useNativeDriver: true,
       }).start();
 
-      // Floating animation
       const animateOrb = () => {
         const targetX = Math.random() * width;
         const targetY = Math.random() * height;
@@ -93,7 +92,7 @@ export default function AnimatedBackground({
         end={{ x: 1, y: 1 }}
       />
 
-      {/* Floating orbs */}
+      {}
       {orbs.map((orb, i) => (
         <Animated.View
           key={i}
@@ -112,20 +111,20 @@ export default function AnimatedBackground({
               ],
             },
             Platform.OS === "web" && {
-              // @ts-ignore
+
               filter: `blur(60px)`,
             },
           ]}
         />
       ))}
 
-      {/* Subtle grid overlay */}
+      {}
       {Platform.OS === "web" && (
         <View
           style={[
             StyleSheet.absoluteFill,
             {
-              // @ts-ignore
+
               backgroundImage:
                 "linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px)",
               backgroundSize: "60px 60px",
@@ -134,7 +133,7 @@ export default function AnimatedBackground({
         />
       )}
 
-      {/* Content */}
+      {}
       <View style={styles.content}>{children}</View>
     </View>
   );

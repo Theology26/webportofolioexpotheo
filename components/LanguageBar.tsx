@@ -71,7 +71,7 @@ export default function LanguageBar({
                 backgroundColor: color,
               },
               Platform.OS === "web" && {
-                // @ts-ignore
+
                 boxShadow: `0 0 12px ${color}55`,
               },
             ]}

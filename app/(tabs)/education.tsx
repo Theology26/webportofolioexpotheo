@@ -27,7 +27,7 @@ export default function EducationScreen() {
         subtitle="Riwayat pendidikan & perjalanan akademik"
       />
 
-      {/* Intro card */}
+      {}
       <GlassCard style={styles.introCard} delay={100}>
         <View style={styles.introRow}>
           <View style={styles.introIconWrap}>
@@ -43,7 +43,7 @@ export default function EducationScreen() {
         </View>
       </GlassCard>
 
-      {/* Timeline */}
+      {}
       <View style={styles.timelineContainer}>
         {EDUCATION.map((item, index) => (
           <TimelineItem
@@ -59,7 +59,7 @@ export default function EducationScreen() {
         ))}
       </View>
 
-      {/* Stats summary */}
+      {}
       <GlassCard style={styles.statsCard} delay={600}>
         <Text style={styles.statsTitle}>Ringkasan</Text>
         <View style={styles.statsRow}>
@@ -83,7 +83,7 @@ export default function EducationScreen() {
         </View>
       </GlassCard>
 
-      {/* Bottom spacing for tab bar */}
+      {}
       <View style={{ height: 100 }} />
     </ScrollView>
     </View>

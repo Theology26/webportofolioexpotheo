@@ -53,7 +53,6 @@ export default function ProjectsScreen() {
 
       const data: Repo[] = await response.json();
 
-      // Filter out forked repos, keep only original repos
       const ownRepos = data.filter((repo) => !repo.fork);
       setRepos(ownRepos);
     } catch (err: any) {
@@ -67,12 +66,10 @@ export default function ProjectsScreen() {
     fetchRepos();
   }, [fetchRepos]);
 
-  // Get unique languages for filter
   const languages = Array.from(
     new Set(repos.map((r) => r.language).filter(Boolean))
   ) as string[];
 
-  // Filtered repos
   const filteredRepos =
     filter === "all"
       ? repos
@@ -94,7 +91,7 @@ export default function ProjectsScreen() {
         subtitle={`Repository dari GitHub @${PROFILE.githubUsername}`}
       />
 
-      {/* Stats bar */}
+      {}
       {!loading && !error && repos.length > 0 && (
         <GlassCard style={styles.statsCard} delay={100}>
           <View style={styles.statsRow}>
@@ -119,7 +116,7 @@ export default function ProjectsScreen() {
         </GlassCard>
       )}
 
-      {/* Language filter chips */}
+      {}
       {!loading && !error && languages.length > 0 && (
         <ScrollView
           horizontal
@@ -146,7 +143,7 @@ export default function ProjectsScreen() {
         </ScrollView>
       )}
 
-      {/* Loading */}
+      {}
       {loading && (
         <View style={styles.centerContainer}>
           <ActivityIndicator size="large" color={THEME.accent} />
@@ -156,7 +153,7 @@ export default function ProjectsScreen() {
         </View>
       )}
 
-      {/* Error */}
+      {}
       {error && (
         <GlassCard style={styles.errorCard}>
           <View style={styles.errorContent}>
@@ -171,7 +168,7 @@ export default function ProjectsScreen() {
         </GlassCard>
       )}
 
-      {/* Empty state */}
+      {}
       {!loading && !error && repos.length === 0 && (
         <GlassCard style={styles.emptyCard}>
           <View style={styles.emptyContent}>
@@ -184,7 +181,7 @@ export default function ProjectsScreen() {
         </GlassCard>
       )}
 
-      {/* Repo grid */}
+      {}
       {!loading && !error && filteredRepos.length > 0 && (
         <View style={[styles.grid, isDesktop && { justifyContent: "flex-start" }]}>
           {filteredRepos.map((repo, index) => (
@@ -193,7 +190,7 @@ export default function ProjectsScreen() {
         </View>
       )}
 
-      {/* Filter empty state */}
+      {}
       {!loading && !error && repos.length > 0 && filteredRepos.length === 0 && (
         <View style={styles.filterEmpty}>
           <Text style={styles.filterEmptyText}>
@@ -202,14 +199,13 @@ export default function ProjectsScreen() {
         </View>
       )}
 
-      {/* Bottom spacing for tab bar */}
+      {}
       <View style={{ height: 100 }} />
     </ScrollView>
     </View>
   );
 }
 
-// ----- Filter Chip -----
 function FilterChip({
   label,
   isActive,
@@ -242,7 +238,6 @@ function FilterChip({
   );
 }
 
-// ----- Stat Badge -----
 function StatBadge({
   icon,
   value,
@@ -261,7 +256,6 @@ function StatBadge({
   );
 }
 
-// ----- Styles -----
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -316,7 +310,7 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(255,255,255,0.04)",
   },
   chipWeb: {
-    // @ts-ignore
+
     cursor: "pointer",
     transition: "background-color 0.2s ease, border-color 0.2s ease",
   } as any,

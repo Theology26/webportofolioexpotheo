@@ -23,7 +23,6 @@ export default function PyramidsCanvas() {
       initSandParticles();
     };
 
-    // Sand storm particles
     let sandParticles: {
       x: number;
       y: number;
@@ -50,7 +49,6 @@ export default function PyramidsCanvas() {
     };
     initSandParticles();
 
-    // Stars
     const stars: { x: number; y: number; s: number; twinkle: number }[] = [];
     for (let i = 0; i < 60; i++) {
       stars.push({
@@ -74,12 +72,12 @@ export default function PyramidsCanvas() {
         clientX = (e as MouseEvent).clientX;
         clientY = (e as MouseEvent).clientY;
       }
-      
+
       const isDesktop = W > 800;
       const groundY = H * 0.7;
       const catX = isDesktop ? W * 0.55 : W * 0.25;
       const catY = groundY;
-      
+
       if (
         Math.abs(clientX - catX) < 50 &&
         clientY > catY - 100 &&
@@ -92,10 +90,9 @@ export default function PyramidsCanvas() {
     window.addEventListener("touchstart", handleInteract);
 
     const drawPyramids = (ctx: CanvasRenderingContext2D) => {
-      // Desert ground
+
       const groundY = H * 0.7;
 
-      // Desert atmosphere glow
       const atmoGrad = ctx.createLinearGradient(0, groundY - 100, 0, groundY + 50);
       atmoGrad.addColorStop(0, "rgba(0,0,0,0)");
       atmoGrad.addColorStop(0.5, "rgba(194, 145, 70, 0.04)");
@@ -103,7 +100,6 @@ export default function PyramidsCanvas() {
       ctx.fillStyle = atmoGrad;
       ctx.fillRect(0, groundY - 100, W, 200);
 
-      // Ground line
       ctx.beginPath();
       ctx.moveTo(0, groundY);
       ctx.lineTo(W, groundY);
@@ -111,14 +107,12 @@ export default function PyramidsCanvas() {
       ctx.lineWidth = 1;
       ctx.stroke();
 
-      // Ground gradient fill
       const gndGrad = ctx.createLinearGradient(0, groundY, 0, H);
       gndGrad.addColorStop(0, "rgba(139, 100, 50, 0.06)");
       gndGrad.addColorStop(1, "rgba(0,0,0,0)");
       ctx.fillStyle = gndGrad;
       ctx.fillRect(0, groundY, W, H - groundY);
 
-      // --- Stars ---
       for (const star of stars) {
         const sx = star.x * W;
         const sy = star.y * H;
@@ -133,7 +127,6 @@ export default function PyramidsCanvas() {
       const isDesktop = W > 800;
       const offset = isDesktop ? W * 0.4 : 0;
 
-      // --- Moon ---
       const moonX = isDesktop ? W * 0.85 : W * 0.8;
       const moonY = H * 0.15;
       const moonR = 18;
@@ -151,20 +144,17 @@ export default function PyramidsCanvas() {
       ctx.fillStyle = "rgba(255, 250, 220, 0.2)";
       ctx.fill();
 
-      // Moon crescent
       ctx.beginPath();
       ctx.arc(moonX + 5, moonY - 2, moonR * 0.85, 0, Math.PI * 2);
       ctx.fillStyle = "rgba(15, 12, 41, 0.2)";
       ctx.fill();
 
-      // --- Pyramids ---
       const pyramids = [
         { cx: offset + W * 0.25, w: 180, h: 140, depth: 0.8 },
         { cx: offset + W * 0.55, w: 260, h: 200, depth: 1 },
         { cx: offset + W * 0.78, w: 140, h: 110, depth: 0.6 },
       ];
 
-      // Sort by depth for painter's algorithm
       pyramids.sort((a, b) => a.depth - b.depth);
 
       for (const pyr of pyramids) {
@@ -174,7 +164,6 @@ export default function PyramidsCanvas() {
         const py = groundY;
         const peakY = py - ph;
 
-        // Shadow
         ctx.beginPath();
         ctx.moveTo(px, peakY);
         ctx.lineTo(px + pw / 2 + pw * 0.3, py);
@@ -183,7 +172,6 @@ export default function PyramidsCanvas() {
         ctx.fillStyle = `rgba(0, 0, 0, ${0.08 * pyr.depth})`;
         ctx.fill();
 
-        // Left face (lighter)
         ctx.beginPath();
         ctx.moveTo(px, peakY);
         ctx.lineTo(px - pw / 2, py);
@@ -197,7 +185,6 @@ export default function PyramidsCanvas() {
         ctx.fillStyle = leftGrad;
         ctx.fill();
 
-        // Right face (darker)
         ctx.beginPath();
         ctx.moveTo(px, peakY);
         ctx.lineTo(px + pw / 2, py);
@@ -211,7 +198,6 @@ export default function PyramidsCanvas() {
         ctx.fillStyle = rightGrad;
         ctx.fill();
 
-        // Edges
         ctx.beginPath();
         ctx.moveTo(px - pw / 2, py);
         ctx.lineTo(px, peakY);
@@ -220,7 +206,6 @@ export default function PyramidsCanvas() {
         ctx.lineWidth = 1;
         ctx.stroke();
 
-        // Pyramid glow
         const pyrGlow = ctx.createRadialGradient(
           px, peakY + ph * 0.4, 10, px, peakY + ph * 0.4, pw
         );
@@ -229,7 +214,6 @@ export default function PyramidsCanvas() {
         ctx.fillStyle = pyrGlow;
         ctx.fillRect(px - pw, peakY, pw * 2, ph);
 
-        // Brick lines (subtle)
         if (pyr.depth > 0.7) {
           const rows = 6;
           for (let r = 1; r < rows; r++) {
@@ -246,15 +230,13 @@ export default function PyramidsCanvas() {
         }
       }
 
-      // --- Cat Statue (Bastet) ---
       const drawCat = () => {
         const cx = isDesktop ? W * 0.55 : W * 0.25;
         const cy = groundY;
-        
+
         ctx.save();
         ctx.translate(cx, cy);
-        
-        // Glow behind cat
+
         const intensity = catAliveTimer > 0 ? 0.4 + Math.sin(time * 5) * 0.1 : 0.2;
         const catGlow = ctx.createRadialGradient(-2, -30, 0, -2, -30, 40);
         catGlow.addColorStop(0, `rgba(212, 175, 55, ${intensity})`);
@@ -262,27 +244,25 @@ export default function PyramidsCanvas() {
         ctx.fillStyle = catGlow;
         ctx.fillRect(-45, -90, 90, 90);
 
-        // Body
         ctx.beginPath();
         ctx.moveTo(-15, 0);
         ctx.quadraticCurveTo(-10, -40, -5, -60);
         ctx.quadraticCurveTo(15, -40, 15, 0);
-        ctx.fillStyle = "rgba(15, 12, 20, 1)"; // dark obsidian
+        ctx.fillStyle = "rgba(15, 12, 20, 1)"; 
         ctx.fill();
 
-        // Head
         ctx.beginPath();
         ctx.arc(-2, -65, 12, 0, Math.PI * 2);
         ctx.fill();
 
         if (catAliveTimer > 0) {
-          // Glowing eyes
+
           ctx.beginPath();
           ctx.ellipse(-6, -67, 2, 4, Math.sin(time * 10) * 0.1, 0, Math.PI * 2);
           ctx.ellipse(2, -67, 2, 4, Math.sin(time * 10) * 0.1, 0, Math.PI * 2);
           ctx.fillStyle = "rgba(167, 139, 250, 1)";
           ctx.fill();
-          
+
           ctx.beginPath();
           ctx.arc(-6, -67, 6, 0, Math.PI * 2);
           ctx.arc(2, -67, 6, 0, Math.PI * 2);
@@ -290,20 +270,18 @@ export default function PyramidsCanvas() {
           ctx.fill();
         }
 
-        // Ears
         ctx.beginPath();
         ctx.moveTo(-10, -70);
         ctx.lineTo(-14, -85);
         ctx.lineTo(-2, -75);
         ctx.fill();
-        
+
         ctx.beginPath();
         ctx.moveTo(6, -70);
         ctx.lineTo(10, -85);
         ctx.lineTo(-2, -75);
         ctx.fill();
 
-        // Gold collar
         ctx.beginPath();
         ctx.moveTo(-10, -55);
         ctx.lineTo(6, -55);
@@ -311,7 +289,6 @@ export default function PyramidsCanvas() {
         ctx.lineWidth = 2;
         ctx.stroke();
 
-        // Tail
         ctx.beginPath();
         ctx.moveTo(12, -10);
         if (catAliveTimer > 0) {
@@ -333,7 +310,7 @@ export default function PyramidsCanvas() {
 
         ctx.restore();
       };
-      
+
       drawCat();
     };
 
@@ -347,7 +324,6 @@ export default function PyramidsCanvas() {
 
       drawPyramids(ctx);
 
-      // Sand storm particles (blowing right)
       const windSpeed = 1 + Math.sin(time * 0.3) * 0.5;
       for (const p of sandParticles) {
         p.x += p.vx * windSpeed;
@@ -362,7 +338,7 @@ export default function PyramidsCanvas() {
         if (p.y > H) p.y = 0;
 
         ctx.beginPath();
-        // Elongated shape for motion blur
+
         ctx.ellipse(p.x, p.y, p.s * 1.5, p.s * 0.5, 0, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(212, 175, 100, ${Math.max(0, p.a)})`;
         ctx.fill();

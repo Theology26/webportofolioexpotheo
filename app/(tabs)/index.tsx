@@ -19,14 +19,12 @@ import ScreenHeader from "../../components/ScreenHeader";
 import HourglassCanvas from "../../components/HourglassCanvas";
 import { PROFILE, THEME, GITHUB_HEADERS } from "../../constants/Config";
 
-// ----- Types -----
 interface LanguageData {
   name: string;
   percentage: number;
   color: string;
 }
 
-// ----- Main Component -----
 export default function ProfileScreen() {
   const { width } = useWindowDimensions();
   const isDesktop = width > 800;
@@ -36,7 +34,6 @@ export default function ProfileScreen() {
   const avatarScale = useRef(new Animated.Value(0)).current;
   const fadeIn = useRef(new Animated.Value(0)).current;
 
-  // Avatar entrance animation
   useEffect(() => {
     Animated.sequence([
       Animated.timing(fadeIn, {
@@ -53,13 +50,11 @@ export default function ProfileScreen() {
     ]).start();
   }, []);
 
-  // Fetch GitHub languages from all repos
   const fetchLanguages = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
 
-      // Step 1: Get all public repos
       const reposResponse = await fetch(
         `https://api.github.com/users/${PROFILE.githubUsername}/repos?per_page=100&sort=updated`,
         { headers: GITHUB_HEADERS }
@@ -77,7 +72,6 @@ export default function ProfileScreen() {
         return;
       }
 
-      // Step 2: Fetch language breakdown for each repo
       const languagePromises = repos.map(async (repo: any) => {
         try {
           const langResponse = await fetch(repo.languages_url, {
@@ -94,7 +88,6 @@ export default function ProfileScreen() {
 
       const allLanguages = await Promise.all(languagePromises);
 
-      // Step 3: Aggregate language bytes
       const languageTotals: Record<string, number> = {};
       allLanguages.forEach((repoLangs: Record<string, number>) => {
         Object.entries(repoLangs).forEach(([lang, bytes]) => {
@@ -102,7 +95,6 @@ export default function ProfileScreen() {
         });
       });
 
-      // Step 4: Calculate percentages and sort
       const totalBytes = Object.values(languageTotals).reduce(
         (sum, b) => sum + b,
         0
@@ -122,7 +114,7 @@ export default function ProfileScreen() {
             THEME.langColors[name] ?? THEME.langColors.default,
         }))
         .sort((a, b) => b.percentage - a.percentage)
-        .slice(0, 10); // Top 10 languages
+        .slice(0, 10); 
 
       setLanguages(sorted);
     } catch (err: any) {
@@ -136,7 +128,6 @@ export default function ProfileScreen() {
     fetchLanguages();
   }, [fetchLanguages]);
 
-  // Social media link handler
   const openLink = (url: string) => {
     if (Platform.OS === "web") {
       window.open(url, "_blank", "noopener,noreferrer");
@@ -158,7 +149,7 @@ export default function ProfileScreen() {
     >
       <ScreenHeader title="Profil" subtitle="Tentang saya & skill saya" />
 
-      {/* ===== PROFILE CARD ===== */}
+      {}
       <GlassCard style={styles.profileCard} delay={100}>
         <Animated.View
           style={[
@@ -167,7 +158,7 @@ export default function ProfileScreen() {
               transform: [{ scale: avatarScale }],
             },
             Platform.OS === "web" && {
-              // @ts-ignore
+
               boxShadow: `0 0 30px ${THEME.accent}44`,
             },
           ]}
@@ -177,7 +168,7 @@ export default function ProfileScreen() {
             style={styles.avatar}
             resizeMode="cover"
           />
-          {/* Avatar ring */}
+          {}
           <View style={styles.avatarRing} />
         </Animated.View>
 
@@ -186,32 +177,32 @@ export default function ProfileScreen() {
           <Text style={styles.title}>{PROFILE.title}</Text>
           <Text style={styles.subtitle}>{PROFILE.subtitle}</Text>
 
-          {/* Bio */}
+          {}
           <View style={styles.bioContainer}>
             <Text style={styles.bio}>{PROFILE.bio}</Text>
           </View>
         </Animated.View>
       </GlassCard>
 
-      {/* ===== SOCIAL LINKS ===== */}
+      {}
       <GlassCard style={styles.socialCard} delay={250}>
         <Text style={styles.sectionTitle}>Connect With Me</Text>
         <View style={styles.socialRow}>
-          {/* Instagram */}
+          {}
           <SocialButton
             icon="logo-instagram"
             label="Instagram"
             color="#E4405F"
             onPress={() => openLink(PROFILE.socialLinks.instagram)}
           />
-          {/* LinkedIn */}
+          {}
           <SocialButton
             icon="logo-linkedin"
             label="LinkedIn"
             color="#0A66C2"
             onPress={() => openLink(PROFILE.socialLinks.linkedin)}
           />
-          {/* GitHub */}
+          {}
           <SocialButton
             icon="logo-github"
             label="GitHub"
@@ -221,7 +212,7 @@ export default function ProfileScreen() {
         </View>
       </GlassCard>
 
-      {/* ===== LANGUAGE SKILLS ===== */}
+      {}
       <GlassCard style={styles.langCard} delay={400}>
         <View style={styles.langHeader}>
           <View>
@@ -282,14 +273,13 @@ export default function ProfileScreen() {
           ))}
       </GlassCard>
 
-      {/* Bottom spacing for tab bar */}
+      {}
       <View style={{ height: 100 }} />
     </ScrollView>
     </View>
   );
 }
 
-// ----- Social Button Sub-component -----
 function SocialButton({
   icon,
   label,
@@ -340,7 +330,7 @@ function SocialButton({
           },
           Platform.OS === "web" &&
             isHovered && {
-              // @ts-ignore
+
               boxShadow: `0 0 20px ${color}33`,
             },
         ]}
@@ -354,7 +344,6 @@ function SocialButton({
   );
 }
 
-// ----- Styles -----
 const styles = StyleSheet.create({
   container: {
     flex: 1,

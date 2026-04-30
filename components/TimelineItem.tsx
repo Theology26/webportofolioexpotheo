@@ -47,7 +47,7 @@ export default function TimelineItem({
 
   return (
     <View style={styles.container}>
-      {/* Timeline connector */}
+      {}
       <View style={styles.timelineColumn}>
         <Animated.View
           style={[
@@ -56,7 +56,7 @@ export default function TimelineItem({
               transform: [{ scale: scaleAnim }],
             },
             Platform.OS === "web" && {
-              // @ts-ignore
+
               boxShadow: `0 0 20px ${THEME.accent}66`,
             },
           ]}
@@ -79,7 +79,7 @@ export default function TimelineItem({
         )}
       </View>
 
-      {/* Content card */}
+      {}
       <View style={styles.contentColumn}>
         <GlassCard delay={index * 300 + 150} style={styles.card}>
           <View style={styles.yearBadge}>

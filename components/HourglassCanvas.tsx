@@ -24,7 +24,6 @@ export default function HourglassCanvas() {
     resize();
     window.addEventListener("resize", resize);
 
-    // Sand particles
     const particles: {
       x: number;
       y: number;
@@ -44,13 +43,12 @@ export default function HourglassCanvas() {
       });
     }
 
-    // Falling sand grains
     const grains: { x: number; y: number; vy: number; a: number }[] = [];
 
     let time = 0;
     let flipAngle = 0;
     let flipTarget = 0;
-    let sandProgress = 0; // 0 (full top) to 1 (empty top)
+    let sandProgress = 0; 
     let isFlipping = false;
 
     const handleInteract = (e: MouseEvent | TouchEvent) => {
@@ -67,7 +65,6 @@ export default function HourglassCanvas() {
       const cx = isDesktop ? W * 0.75 : W / 2;
       const cy = H / 2;
 
-      // Only flip if clicked near the hourglass itself
       if (Math.abs(clientX - cx) < 150 && Math.abs(clientY - cy) < 200) {
         if (!isFlipping && sandProgress > 0.01) {
           isFlipping = true;
@@ -89,7 +86,6 @@ export default function HourglassCanvas() {
       ctx.save();
       ctx.translate(cx, cy);
 
-      // Glow behind hourglass
       const glow = ctx.createRadialGradient(0, 0, 10, 0, 0, hH * 0.7);
       glow.addColorStop(0, "rgba(212, 165, 116, 0.08)");
       glow.addColorStop(0.5, "rgba(124, 92, 252, 0.04)");
@@ -97,27 +93,24 @@ export default function HourglassCanvas() {
       ctx.fillStyle = glow;
       ctx.fillRect(-hH, -hH, hH * 2, hH * 2);
 
-      // 3D perspective skew and interactive flip
       const skew = Math.sin(time * 0.2) * 0.03;
       ctx.transform(1, 0, skew, 1, 0, 0);
       ctx.rotate(flipAngle);
 
-      // --- Draw hourglass frame (outer) ---
       ctx.beginPath();
-      // Top-left → neck-left
+
       ctx.moveTo(-hW, -hH / 2);
       ctx.bezierCurveTo(-hW, -hH * 0.12, -neckW * 2, -neckW, -neckW, 0);
-      // Neck-left → bottom-left
+
       ctx.bezierCurveTo(-neckW * 2, neckW, -hW, hH * 0.12, -hW, hH / 2);
-      // Bottom edge
+
       ctx.lineTo(hW, hH / 2);
-      // Bottom-right → neck-right
+
       ctx.bezierCurveTo(hW, hH * 0.12, neckW * 2, neckW, neckW, 0);
-      // Neck-right → top-right
+
       ctx.bezierCurveTo(neckW * 2, -neckW, hW, -hH * 0.12, hW, -hH / 2);
       ctx.closePath();
 
-      // Glass fill
       const glassFill = ctx.createLinearGradient(-hW, 0, hW, 0);
       glassFill.addColorStop(0, "rgba(124, 92, 252, 0.06)");
       glassFill.addColorStop(0.3, "rgba(167, 139, 250, 0.1)");
@@ -126,12 +119,10 @@ export default function HourglassCanvas() {
       ctx.fillStyle = glassFill;
       ctx.fill();
 
-      // Glass border
       ctx.strokeStyle = "rgba(167, 139, 250, 0.3)";
       ctx.lineWidth = 1.5;
       ctx.stroke();
 
-      // Glass shine line (left)
       ctx.beginPath();
       ctx.moveTo(-hW * 0.75, -hH / 2 + 10);
       ctx.bezierCurveTo(
@@ -146,7 +137,6 @@ export default function HourglassCanvas() {
       ctx.lineWidth = 1;
       ctx.stroke();
 
-      // Top and bottom rims
       ctx.strokeStyle = "rgba(212, 165, 116, 0.4)";
       ctx.lineWidth = 3;
       ctx.beginPath();
@@ -158,7 +148,6 @@ export default function HourglassCanvas() {
       ctx.lineTo(hW + 5, hH / 2);
       ctx.stroke();
 
-      // Decorative top/bottom caps
       ctx.strokeStyle = "rgba(212, 165, 116, 0.25)";
       ctx.lineWidth = 1;
       ctx.beginPath();
@@ -170,8 +159,7 @@ export default function HourglassCanvas() {
       ctx.lineTo(hW + 8, hH / 2 + 4);
       ctx.stroke();
 
-      // --- Sand in upper chamber ---
-      const upperLevel = sandProgress; // 0=full, 1=empty
+      const upperLevel = sandProgress; 
 
       if (upperLevel < 0.95) {
         ctx.beginPath();
@@ -211,7 +199,6 @@ export default function HourglassCanvas() {
         ctx.fill();
       }
 
-      // --- Sand stream through neck ---
       if (upperLevel < 0.95) {
         ctx.beginPath();
         ctx.moveTo(-1, -2);
@@ -223,8 +210,7 @@ export default function HourglassCanvas() {
         ctx.fill();
       }
 
-      // --- Sand in lower chamber ---
-      const lowerLevel = sandProgress; // 0=empty, 1=full
+      const lowerLevel = sandProgress; 
       if (lowerLevel > 0.05) {
         ctx.beginPath();
         const sandBot = hH / 2 - 5;
@@ -274,7 +260,6 @@ export default function HourglassCanvas() {
         ctx.fill();
       }
 
-      // Spawn falling grains near neck
       if (Math.random() < 0.3 && upperLevel < 0.95) {
         grains.push({
           x: (Math.random() - 0.5) * 4,
@@ -284,7 +269,6 @@ export default function HourglassCanvas() {
         });
       }
 
-      // Draw falling grains
       for (let i = grains.length - 1; i >= 0; i--) {
         const g = grains[i];
         g.y += g.vy;
@@ -310,25 +294,23 @@ export default function HourglassCanvas() {
       ctx.clearRect(0, 0, W, H);
       time += 0.016;
 
-      // Flip animation and physics logic
       if (isFlipping) {
         flipAngle += (flipTarget - flipAngle) * 0.08;
         if (Math.abs(flipTarget - flipAngle) < 0.02) {
            flipAngle = 0;
            flipTarget = 0;
-           sandProgress = 1 - sandProgress; // Invert sand level exactly when upside down
+           sandProgress = 1 - sandProgress; 
            isFlipping = false;
         }
       } else {
-        // Very slow sand
+
         if (sandProgress < 1) {
-          sandProgress += 0.0005; // ~33 seconds to empty
+          sandProgress += 0.0005; 
         }
       }
 
       drawHourglass(ctx);
 
-      // Ambient particles
       for (const p of particles) {
         p.x += p.vx;
         p.y += p.vy;

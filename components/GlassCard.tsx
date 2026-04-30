@@ -60,7 +60,7 @@ export default function GlassCard({
         style,
       ]}
     >
-      {/* Top highlight edge for glass effect */}
+      {}
       <View style={styles.highlight} />
       {children}
     </Animated.View>
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     position: "relative",
   },
   cardWeb: {
-    // @ts-ignore – web-only CSS properties
+
     backdropFilter: "blur(20px)",
     WebkitBackdropFilter: "blur(20px)",
     transition: "transform 0.3s ease, box-shadow 0.3s ease",

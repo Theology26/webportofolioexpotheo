@@ -24,7 +24,6 @@ export default function ScalesCanvas() {
     resize();
     window.addEventListener("resize", resize);
 
-    // Floating particles
     const particles: {
       x: number;
       y: number;
@@ -60,8 +59,7 @@ export default function ScalesCanvas() {
       const isDesktop = W > 800;
       const cx = isDesktop ? W * 0.75 : W / 2;
       const cy = H / 2;
-      
-      // Only tilt if clicked near the scales
+
       if (Math.abs(clientX - cx) < 250 && Math.abs(clientY - cy) < 250) {
         if (clientX < cx) targetTilt = -0.25;
         else targetTilt = 0.25;
@@ -80,7 +78,6 @@ export default function ScalesCanvas() {
       ctx.save();
       ctx.translate(cx, cy);
 
-      // Glow
       const glow = ctx.createRadialGradient(0, 0, 10, 0, 0, scaleH);
       glow.addColorStop(0, "rgba(212, 175, 55, 0.07)");
       glow.addColorStop(0.5, "rgba(124, 92, 252, 0.03)");
@@ -88,14 +85,11 @@ export default function ScalesCanvas() {
       ctx.fillStyle = glow;
       ctx.fillRect(-scaleH, -scaleH, scaleH * 2, scaleH * 2);
 
-      // Sway animation
       const tiltAngle = currentTilt + Math.sin(time * 0.3) * 0.035;
 
-      // --- Pillar / Stand ---
       const pillarH = scaleH * 0.85;
       const pillarW = 6;
 
-      // Base
       ctx.beginPath();
       ctx.ellipse(0, pillarH * 0.45, beamW * 0.3, 12, 0, 0, Math.PI * 2);
       const baseGrad = ctx.createRadialGradient(0, pillarH * 0.45, 2, 0, pillarH * 0.45, beamW * 0.3);
@@ -107,7 +101,6 @@ export default function ScalesCanvas() {
       ctx.lineWidth = 1;
       ctx.stroke();
 
-      // Pillar
       const pilGrad = ctx.createLinearGradient(-pillarW, 0, pillarW, 0);
       pilGrad.addColorStop(0, "rgba(212, 175, 55, 0.15)");
       pilGrad.addColorStop(0.3, "rgba(212, 175, 55, 0.35)");
@@ -116,11 +109,9 @@ export default function ScalesCanvas() {
       ctx.fillStyle = pilGrad;
       ctx.fillRect(-pillarW / 2, -pillarH * 0.45, pillarW, pillarH * 0.9);
 
-      // Pillar shine
       ctx.fillStyle = "rgba(255, 255, 255, 0.1)";
       ctx.fillRect(-pillarW / 2 + 1, -pillarH * 0.45, 1.5, pillarH * 0.9);
 
-      // --- Top ornament ---
       ctx.beginPath();
       ctx.arc(0, -pillarH * 0.45, 8, 0, Math.PI * 2);
       ctx.fillStyle = "rgba(212, 175, 55, 0.3)";
@@ -129,7 +120,6 @@ export default function ScalesCanvas() {
       ctx.lineWidth = 1.5;
       ctx.stroke();
 
-      // Small diamond on top
       ctx.beginPath();
       ctx.moveTo(0, -pillarH * 0.45 - 14);
       ctx.lineTo(5, -pillarH * 0.45 - 8);
@@ -142,7 +132,6 @@ export default function ScalesCanvas() {
       ctx.lineWidth = 1;
       ctx.stroke();
 
-      // --- Beam ---
       ctx.save();
       ctx.rotate(tiltAngle);
 
@@ -154,7 +143,6 @@ export default function ScalesCanvas() {
       ctx.lineWidth = 3;
       ctx.stroke();
 
-      // Beam shine
       ctx.beginPath();
       ctx.moveTo(-beamW, beamY - 1);
       ctx.lineTo(beamW, beamY - 1);
@@ -162,7 +150,6 @@ export default function ScalesCanvas() {
       ctx.lineWidth = 1;
       ctx.stroke();
 
-      // --- Chains & Plates ---
       const chainLen = scaleH * 0.35;
       const plateW = beamW * 0.28;
       const plateH = 8;
@@ -173,7 +160,6 @@ export default function ScalesCanvas() {
         const plateY = beamY + chainLen;
         const plateSway = Math.sin(time * 0.7 + side * 1.5) * 2;
 
-        // Chain links
         const links = 8;
         for (let i = 0; i <= links; i++) {
           const ly = beamY + (chainLen * i) / links;
@@ -185,7 +171,6 @@ export default function ScalesCanvas() {
           ctx.stroke();
         }
 
-        // Plate
         const psx = px + plateSway;
         ctx.beginPath();
         ctx.ellipse(psx, plateY, plateW, plateH, 0, 0, Math.PI * 2);
@@ -202,14 +187,12 @@ export default function ScalesCanvas() {
         ctx.lineWidth = 1.5;
         ctx.stroke();
 
-        // Plate inner ring
         ctx.beginPath();
         ctx.ellipse(psx, plateY, plateW * 0.6, plateH * 0.6, 0, 0, Math.PI * 2);
         ctx.strokeStyle = "rgba(212, 175, 55, 0.15)";
         ctx.lineWidth = 0.5;
         ctx.stroke();
 
-        // Plate glow
         const pglow = ctx.createRadialGradient(
           psx, plateY + 5, 0, psx, plateY + 5, plateW * 1.5
         );
@@ -221,9 +204,9 @@ export default function ScalesCanvas() {
         );
       }
 
-      ctx.restore(); // end beam rotation
+      ctx.restore(); 
 
-      ctx.restore(); // end translate
+      ctx.restore(); 
     };
 
     const animate = () => {
@@ -233,13 +216,11 @@ export default function ScalesCanvas() {
       ctx.clearRect(0, 0, W, H);
       time += 0.016;
 
-      // Decay tilt back to 0 slowly
       targetTilt *= 0.98;
       currentTilt += (targetTilt - currentTilt) * 0.08;
 
       drawScales(ctx);
 
-      // Particles
       for (const p of particles) {
         p.x += p.vx;
         p.y += p.vy;

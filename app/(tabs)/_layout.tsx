@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     paddingBottom: 8,
     paddingTop: 8,
     height: 65,
-    // @ts-ignore
+
     backdropFilter: "blur(20px)",
     WebkitBackdropFilter: "blur(20px)",
     position: "fixed",

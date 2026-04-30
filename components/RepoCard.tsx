@@ -90,10 +90,10 @@ export default function RepoCard({ repo, index }: RepoCardProps) {
           isHovered && styles.cardHovered,
         ]}
       >
-        {/* Top highlight */}
+        {}
         <View style={styles.highlight} />
 
-        {/* Header */}
+        {}
         <View style={styles.header}>
           <MaterialIcons
             name="folder"
@@ -112,12 +112,12 @@ export default function RepoCard({ repo, index }: RepoCardProps) {
           />
         </View>
 
-        {/* Description */}
+        {}
         <Text style={styles.description} numberOfLines={3}>
           {repo.description || "No description provided."}
         </Text>
 
-        {/* Topics */}
+        {}
         {repo.topics && repo.topics.length > 0 && (
           <View style={styles.topicsRow}>
             {repo.topics.slice(0, 3).map((topic) => (
@@ -128,7 +128,7 @@ export default function RepoCard({ repo, index }: RepoCardProps) {
           </View>
         )}
 
-        {/* Footer */}
+        {}
         <View style={styles.footer}>
           {repo.language && (
             <View style={styles.footerItem}>
@@ -172,7 +172,7 @@ const styles = StyleSheet.create({
     position: "relative",
   },
   cardWeb: {
-    // @ts-ignore
+
     backdropFilter: "blur(20px)",
     WebkitBackdropFilter: "blur(20px)",
     transition:
@@ -184,7 +184,7 @@ const styles = StyleSheet.create({
       ? ({
           transform: [{ translateY: -6 }, { scale: 1.02 }],
           borderColor: `${THEME.accent}66`,
-          // @ts-ignore
+
           boxShadow: `0 12px 40px rgba(124, 92, 252, 0.2), 0 0 0 1px ${THEME.accent}33`,
         } as any)
       : {}),

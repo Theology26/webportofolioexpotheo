@@ -33,8 +33,8 @@ Before running this project, ensure you have the following installed on your mac
 1. Clone the Repository
 Open your terminal and clone the repository from GitHub:
 ```bash
-git clone <your-github-repo-url>
-cd ppt-expo
+git clone https://github.com/Theology26/webportofolioexpotheo.git
+cd webportofolioexpotheo
 ```
 
 2. Install Dependencies
